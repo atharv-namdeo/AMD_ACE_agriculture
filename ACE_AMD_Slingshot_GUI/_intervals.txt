@@ -1,0 +1,54 @@
+1470: function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeStrin
+1471: setInterval(updateClock, 1000); updateClock();
+1494: tileCtrl.onAdd = function () {
+1514: L.DomEvent.on(btn, 'click', function (e) {
+1582: function initLocation(lat, lng) {
+1617: legendCtrl.onAdd = function () {
+1643: function moveBlackRover() {
+1705: function buildSurvStrips(bbox, numStrips) {
+1717: function startSurveillance(bbox) {
+1737: function stepSurveillance() {
+1800: function moveFreeRoam() {
+1825: function moveEntities() {
+1830: setInterval(moveEntities, 700);
+1851: function createZone(lat, lng, level) {
+1889: const onZoneClick = function (e) {
+1900: function renderZoneList() {
+1978: function selectZone(id) {
+1987: function updateStats() {
+1994: function undoLast() {
+2004: function setTool(t) {
+2011: function setNeedLevel(l) {
+2019: function toggleHeatmap() {
+2035: function toggleFertDone() {
+2046: function addToMission(id) {
+2056: function removeFromMission(id) {
+2061: function renderMission() {
+2086: function deployRover() {
+2097: const interval = setInterval(() => {
+2116: function markFertilized(id) {
+2150: function renderHistory() {
+2179: function exportHistory() {
+2193: function switchTab(name, el) {
+2202: function showToast(msg) {
+2227: function updateScanReadings() {
+2248: setInterval(updateScanReadings, 900);
+2251: function collectData() {
+2275: function renderScanLog() {
+2298: function clearScanLog() {
+2304: function exportScanData() {
+2319: function updateSensorStrip() {
+2374: setInterval(updateSensorStrip, 1100);
+2379: posCtrl.onAdd = function () {
+2425: function updatePosPanel() {
+2427: function heading(dlat, dlng) {
+2474: setInterval(updatePosPanel, 700);
+2492: function _setDrawBox(x1, y1, x2, y2) {
+2498: function _onDown(e) {
+2504: function _onMove(e) {
+2509: function _onUp(e) {
+2539: function enterDrawMode() {
+2547: function exitDrawMode() {
+2555: function toggleSurvDraw() {
+2578: function launchSurveillance() {
+2584: function cancelSurveillance() {

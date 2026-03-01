@@ -1,0 +1,82 @@
+JS100|
+JS101|        // Starting positions (relative offsets from origin, filled after geo)
+JS102|        let bRoverPos = [originLat - 0.0005, originLng - 0.0005];
+JS103|        let blRoverPos = [originLat + 0.0007, originLng + 0.0009];
+JS104|        let dronePos = [originLat, originLng];
+JS105|
+JS106|        const blueRoverMarker = L.marker(bRoverPos, { icon: blueRoverIcon, zIndexOffset: 500 }).addTo(map)
+JS107|            .bindTooltip('🔵 Scout Rover — Collecting sensor data', { permanent: false, direction: 'top', className: 'leaflet-tt' });
+JS108|        const blackRoverMarker = L.marker(blRoverPos, { icon: blackRoverIcon, zIndexOffset: 500 }).addTo(map)
+JS109|            .bindTooltip('⚫ Fertilizer Rover — Deploying bullets', { permanent: false, direction: 'top', className: 'leaflet-tt' });
+JS110|        const droneMarker = L.marker(dronePos, { icon: droneIcon, zIndexOffset: 600 }).addTo(map)
+JS111|            .bindTooltip('✈️ Surveillance Drone — Live feed active', { permanent: false, direction: 'top', className: 'leaflet-tt' });
+JS112|
+JS113|
+JS114|
+JS115|        function initLocation(lat, lng) {
+JS116|            originLat = lat; originLng = lng;
+JS117|            map.setView([lat, lng], 17);
+JS118|
+JS119|            // Reposition entities relative to real location
+JS120|            bRoverPos = [lat - 0.0005, lng - 0.0005];
+JS121|            blRoverPos = [lat + 0.0007, lng + 0.0009];
+JS122|            dronePos = [lat + 0.0003, lng - 0.0003];
+JS123|            blueRoverMarker.setLatLng(bRoverPos);
+JS124|            blackRoverMarker.setLatLng(blRoverPos);
+JS125|            droneMarker.setLatLng(dronePos);
+JS126|
+JS127|            // Clear old trails
+JS128|            bRoverTrail = []; blRoverTrail = []; droneTrail = [];
+JS129|            bRoverLine.setLatLngs([]); blRoverLine.setLatLngs([]); droneLine.setLatLngs([]);
+JS130|
+JS131|            showToast('�️ Map centred at field coordinates');
+JS132|        }
+JS133|
+JS134|        // Geolocation disabled — use default field coordinates
+JS135|        // (called AFTER trail variables are declared below)
+JS136|
+JS137|        // Trails
+JS138|        let bRoverTrail = [];
+JS139|        let blRoverTrail = [];
+JS140|        let droneTrail = [];
+JS141|        const bRoverLine = L.polyline([], { color: '#1976d2', weight: 2, opacity: .5, dashArray: '4 6' }).addTo(map);
+JS142|        const blRoverLine = L.polyline([], { color: '#757575', weight: 2, opacity: .4, dashArray: '4 6' }).addTo(map);
+JS143|        const droneLine = L.polyline([], { color: '#00ff88', weight: 1.5, opacity: .4, dashArray: '3 8' }).addTo(map);
+JS144|
+JS145|        // Now safe to call — trails are declared
+JS146|        initLocation(originLat, originLng);
+JS147|
+JS148|        // Map legend overlay
+JS149|        const legendCtrl = L.control({ position: 'bottomleft' });
+JS150|        legendCtrl.onAdd = function () {
+JS151|            const d = L.DomUtil.create('div', '');
+JS152|            d.style.cssText = 'background:rgba(5,14,10,.88);backdrop-filter:blur(8px);border:1px solid #005c30;border-radius:10px;padding:10px 14px;font-size:11px;font-family:Inter,sans-serif;color:#d4f5e0;min-width:160px;';
+JS153|            d.innerHTML = `
+JS154|                <div style="font-size:9px;color:#6a9f7e;letter-spacing:.6px;margin-bottom:7px;text-transform:uppercase">Map Entities</div>
+JS155|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;background:#1565c0;border-radius:3px;display:inline-block;box-shadow:0 0 6px #1976d2"></span>Scout Rover</div>
+JS156|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;background:#1a1a1a;border:1.5px solid #616161;border-radius:3px;display:inline-block"></span>Fertilizer Rover</div>
+JS157|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;background:#00ff88;border-radius:50%;display:inline-block;box-shadow:0 0 6px #00ff88"></span>Surveillance Drone</div>
+JS158|                <hr style="border-color:#1a3d26;margin:6px 0"/>
+JS159|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;background:#ff4444;border-radius:2px;display:inline-block"></span>High Need</div>
+JS160|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;background:#ffb300;border-radius:2px;display:inline-block"></span>Medium</div>
+JS161|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;background:#00ff88;border-radius:2px;display:inline-block"></span>Low Need</div>
+JS162|                <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;background:#4fc3f7;border-radius:2px;display:inline-block"></span>Fertilized</div>`;
+JS163|            L.DomEvent.disableClickPropagation(d);
+JS164|            return d;
+JS165|        };
+JS166|        legendCtrl.addTo(map);
+JS167|
+JS168|        // ══════════════════════════════════════════════════════════
+JS169|        //  MOVEMENT ALGORITHMS
+JS170|        // ══════════════════════════════════════════════════════════
+JS171|
+JS172|        // ── 1. BLACK FERTILIZER ROVER — patrols between marked zones ──
+JS173|        let fertTarget = null;   // current target zone index
+JS174|        let fertDwell = 0;      // ticks dwelling at a zone
+JS175|
+JS176|        function moveBlackRover() {
+JS177|            // Build list of unfertilized zone positions
+JS178|            const targets = zones.filter(z => !z.fertilized).map(z => [z.lat, z.lng]);
+JS179|
+JS180|            if (targets.length === 0) {
+JS181|                // No zones — idle with gentle drift near origin

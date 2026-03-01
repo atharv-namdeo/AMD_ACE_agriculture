@@ -1,0 +1,11 @@
+
+---
+C:\Users\ACER\OneDrive\Desktop\ACE_AMD_Slingshot\_temp_check.js:1142
+        }
+        ^
+
+SyntaxError: Unexpected token '}'
+    at wrapSafe (node:internal/modules/cjs/loader:1691:18)
+    at checkSyntax (node:internal/main/check_syntax:76:3)
+
+Node.js v25.2.1

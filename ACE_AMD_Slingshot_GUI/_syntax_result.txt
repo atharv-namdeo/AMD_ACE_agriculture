@@ -1,0 +1,35 @@
+﻿node : C:\Users\ACER\
+OneDrive\Desktop\ACE_
+AMD_Slingshot\_js_ext
+ract.js:1142
+At line:1 char:1
++ node --check 
+_js_extract.js 2>&1 
+| Out-File -Encoding 
+utf8 _syntax_re ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (C:\User   
+ s\ACER\O...extra    
+ct.js:1142:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+        }
+        ^
+
+SyntaxError: 
+Unexpected token '}'
+    at wrapSafe (node
+:internal/modules/cjs
+/loader:1691:18)
+    at checkSyntax (n
+ode:internal/main/che
+ck_syntax:76:3)
+
+Node.js v25.2.1

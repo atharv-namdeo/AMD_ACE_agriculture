@@ -1,0 +1,6 @@
+1713: function startSurveillance(bbox) {
+2528: document.getElementById('btnStartSurv').style.display = 'inline-flex';
+2566: document.getElementById('btnStartSurv').style.display = 'none';
+2576: startSurveillance(survPendingBBox);
+2578: document.getElementById('btnStartSurv').style.display = 'none';
+2587: document.getElementById('btnStartSurv').style.display = 'none';

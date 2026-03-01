@@ -1,0 +1,30 @@
+JS1[0]: 
+---
+JS2[22]:         // ── CLOCK ──
+---
+JS3[114]:         function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString(); }
+---
+JS4[54]:         setInterval(updateClock, 1000); updateClock();
+---
+JS5[0]: 
+---
+JS6[20]:         // ── MAP ──
+---
+JS7[118]:         const map = L.map('agriMap', { zoomControl: true, attributionControl: false }).setView([20.5937, 78.9629], 2);
+---
+JS8[0]: 
+---
+JS9[49]:         // Free tile layers — no API key required
+---
+JS10[28]:         const tileLayers = {
+---
+JS11[133]:             satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+---
+JS12[80]:                 attribution: '© Esri, Maxar, Earthstar Geographics', maxZoom: 20
+---
+JS13[15]:             }),
+---
+JS14[96]:             dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+---
+JS15[87]:                 attribution: '©OpenStreetMap ©CartoDB', subdomains: 'abcd', maxZoom: 20
+---

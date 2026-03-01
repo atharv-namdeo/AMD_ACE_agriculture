@@ -1,0 +1,51 @@
+UNCLOSED at JS2: state=lineComment |         // ── CLOCK ──
+UNCLOSED at JS6: state=lineComment |         // ── MAP ──
+UNCLOSED at JS9: state=lineComment |         // Free tile layers — no API key required
+UNCLOSED at JS21: state=lineComment |         // Satellite is default — best for field analysis
+UNCLOSED at JS25: state=lineComment |         // Custom tile switcher
+UNCLOSED at JS39: state=template |                 btn.style.cssText = `
+UNCLOSED at JS40: state=template |                     background:${b.key === 'satellite' ? '#005c30' : 'rgba(5,14,10,.88)'};
+UNCLOSED at JS41: state=template |                     color:${b.key === 'satellite' ? '#00ff88' : '#8ab99a'};
+UNCLOSED at JS42: state=template |                     border:1px solid ${b.key === 'satellite' ? '#00ff88' : '#1a3d26'};
+UNCLOSED at JS43: state=template |                     border-radius:7px;padding:5px 11px;font-size:11px;font-family:Inter,sans-serif;
+UNCLOSED at JS44: state=template |                     cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px);
+UNCLOSED at JS45: state=template |                     font-weight:${b.key === 'satellite' ? '700' : '400'};
+UNCLOSED at JS51: state=lineComment |                     // Push tile layer to bottom so markers stay on top
+UNCLOSED at JS69: state=lineComment |         // ── ENTITY ICONS ──
+UNCLOSED at JS71: state=template |             html: `<div title="Blue Rover — Surveillance" style="
+UNCLOSED at JS72: state=template |                 width:26px;height:26px;border-radius:5px;
+UNCLOSED at JS73: state=template |                 background:#1565c0;border:2px solid #90caf9;
+UNCLOSED at JS74: state=template |                 box-shadow:0 0 14px #1976d2,0 0 4px #90caf9;
+UNCLOSED at JS75: state=template |                 display:flex;align-items:center;justify-content:center;
+UNCLOSED at JS80: state=template |             html: `<div title="Black Rover — Fertilizer" style="
+UNCLOSED at JS81: state=template |                 width:26px;height:26px;border-radius:5px;
+UNCLOSED at JS82: state=template |                 background:#1a1a1a;border:2px solid #616161;
+UNCLOSED at JS83: state=template |                 box-shadow:0 0 12px #424242;
+UNCLOSED at JS84: state=template |                 display:flex;align-items:center;justify-content:center;
+UNCLOSED at JS89: state=template |             html: `<div title="Drone — Visual Surveillance" style="
+UNCLOSED at JS90: state=template |                 width:28px;height:28px;border-radius:50%;
+UNCLOSED at JS91: state=template |                 background:#00c96a;border:2px solid #00ff88;
+UNCLOSED at JS92: state=template |                 box-shadow:0 0 18px #00ff88,0 0 6px #00ff88;
+UNCLOSED at JS93: state=template |                 display:flex;align-items:center;justify-content:center;
+UNCLOSED at JS98: state=lineComment |         // ── GEOLOCATION — centre map at user's real location ──
+UNCLOSED at JS101: state=lineComment |         // Starting positions (relative offsets from origin, filled after geo)
+UNCLOSED at JS119: state=lineComment |             // Reposition entities relative to real location
+UNCLOSED at JS127: state=lineComment |             // Clear old trails
+UNCLOSED at JS134: state=lineComment |         // Geolocation disabled — use default field coordinates
+UNCLOSED at JS137: state=lineComment |         // Trails
+UNCLOSED at JS145: state=lineComment |         // Now safe to call — trails are declared
+UNCLOSED at JS148: state=lineComment |         // Map legend overlay
+UNCLOSED at JS153: state=template |             d.innerHTML = `
+UNCLOSED at JS154: state=template |                 <div style="font-size:9px;color:#6a9f7e;letter-spacing:.6px;margin-bottom:7px;text-transform:uppercase">
+UNCLOSED at JS155: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;ba
+UNCLOSED at JS156: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;ba
+UNCLOSED at JS157: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:12px;ba
+UNCLOSED at JS158: state=template |                 <hr style="border-color:#1a3d26;margin:6px 0"/>
+UNCLOSED at JS159: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;bac
+UNCLOSED at JS160: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;bac
+UNCLOSED at JS161: state=template |                 <div style="display:flex;align-items:center;gap:7px;margin:4px 0"><span style="width:12px;height:4px;bac
+UNCLOSED at JS168: state=lineComment |         // ══════════════════════════════════════════════════════════
+UNCLOSED at JS170: state=lineComment |         // ══════════════════════════════════════════════════════════
+UNCLOSED at JS171: state=lineComment | 
+UNCLOSED at JS173: state=lineComment |         let fertTarget = null;   // current target zone index
+UNCLOSED at JS177: state=lineComment |             // Build list of unfertilized zone positions

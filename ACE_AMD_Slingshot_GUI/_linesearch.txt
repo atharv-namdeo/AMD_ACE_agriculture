@@ -1,0 +1,16 @@
+1077:         <button class="tool-btn" id="btnSurv" onclick="toggleSurvDraw()" style="border-color:#fff700;color:#fff700">
+1080:         <button class="tool-btn" id="btnCancelSurv" onclick="cancelSurveillance()"
+1105:         <span id="survDrawHint" style="color:#fff700;font-size:10px;display:none">🖱️ Click &amp; drag on map to draw
+2530:             document.getElementById('survDrawHint').style.display = 'none';
+2551:         function toggleSurvDraw() {
+2556:                 document.getElementById('survDrawHint').style.display = 'none';
+2570:             document.getElementById('survDrawHint').style.display = 'inline';
+2571:             document.getElementById('survStatus').textContent = 'DRAW MODE - click and drag on the map';
+2574:         function launchSurveillance() {
+2580:         function cancelSurveillance() {
+2592:             document.getElementById('survDrawHint').style.display = 'none';
+2602:         document.getElementById('survDrawHint').style.display = 'inline';
+2603:         document.getElementById('survStatus').textContent = ' DRAW MODE — click and drag on the map';
+2606:         function launchSurveillance() {
+2612:         function cancelSurveillance() {
+2624:             document.getElementById('survDrawHint').style.display = 'none';

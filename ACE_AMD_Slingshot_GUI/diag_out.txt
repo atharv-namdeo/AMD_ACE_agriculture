@@ -1,0 +1,29 @@
+JS166|        legendCtrl.addTo(map);
+JS168|        // ══════════════════════════════════════════════════════════
+JS169|        //  MOVEMENT ALGORITHMS
+JS170|        // ══════════════════════════════════════════════════════════
+JS172|        // ── 1. BLACK FERTILIZER ROVER — patrols between marked zones ──
+JS173|        let fertTarget = null;   // current target zone index
+JS174|        let fertDwell = 0;      // ticks dwelling at a zone
+JS176|        function moveBlackRover() {
+JS177|            // Build list of unfertilized zone positions
+JS178|            const targets = zones.filter(z => !z.fertilized).map(z => [z.lat, z.lng]);
+JS180|            if (targets.length === 0) {
+JS181|                // No zones — idle with gentle drift near origin
+JS182|                const t = Date.now() / 9000;
+JS183|                blRoverPos = [
+JS184|                    originLat + Math.sin(t) * 0.00015,
+JS185|                    originLng + Math.cos(t) * 0.00015
+JS186|                ];
+JS187|                blackRoverMarker.setLatLng(blRoverPos);
+JS188|                blackRoverMarker.setTooltipContent('⚫ Fertilizer Rover — Standby (no zones)');
+JS189|                return;
+JS190|            }
+JS192|            // Clamp target index
+JS193|            if (fertTarget === null || fertTarget >= targets.length) fertTarget = 0;
+JS195|            const goal = targets[fertTarget];
+JS196|            const cur = blRoverPos;
+JS197|            const dlat = goal[0] - cur[0];
+JS198|            const dlng = goal[1] - cur[1];
+JS199|            const dist = Math.sqrt(dlat * dlat + dlng * dlng);
+JS201|            if (dist < 0.00008) {

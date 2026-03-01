@@ -1,0 +1,23 @@
+1695: let survActive = false;
+1701: let survRectLayer = null;
+1702: let survProgress = 0;
+1717: function startSurveillance(bbox) {
+1719: survActive = true;
+1729: survProgress = 0;
+1738: if (!survActive) return;
+1784: survProgress = Math.min(100, Math.round(done / survStrips.length * 100));
+1785: document.getElementById('survBar').style.width = survProgress + '%';
+1786: document.getElementById('survPct').textContent = survProgress + '%';
+1789: survActive = false;
+1827: if (survActive) stepSurveillance();
+2439: bNav.textContent = survActive
+2469: dNav.textContent = survActive
+2470: ? `▣ Surveillance sweep ${survProgress}%`
+2525: if (survRectLayer) map.removeLayer(survRectLayer);
+2526: survRectLayer = L.rectangle([[bbox.minLat, bbox.minLng], [bbox.maxLat, bbox.maxLng]],
+2561: if (!survPendingBBox && !survActive) {
+2567: if (survActive) { showToast('Cancel current surveillance first'); return; }
+2568: if (survRectLayer) { map.removeLayer(survRectLayer); survRectLayer = null; }
+2580: startSurveillance(survPendingBBox);
+2585: survActive = false; survPendingBBox = null;
+2587: if (survRectLayer) { map.removeLayer(survRectLayer); survRectLayer = null; }
